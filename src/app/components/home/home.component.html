@@ -1,0 +1,198 @@
+<section class="home">
+    <div class="container">
+
+        <!-- Start Home Header -->
+        <div class="home-header">
+            <h3 class="text-capitalize">{{ productsTitle ? productsTitle : 'Products' }}</h3>
+            <span>Home / <span>Products </span>
+                <span class="fw-bold text-capitalize" *ngIf="productsTitle">/ {{ productsTitle }}</span>
+            </span>
+        </div>
+        <!-- End Home Header -->
+
+        <!-- Start Home Content -->
+        <div class="home-content">
+            <div class="col-25">
+                <app-filteration-options (categoryFilterEvt)="categoryChecked($event)"></app-filteration-options>
+            </div>
+            <div *ngIf="!loadContent; else loadingContent" class="col-75 d-flex flex-wrap">
+                <P *ngIf="searchActive" class="w-100">({{ totalItems }}) Products Found</P>
+                <div *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: p, totalItems: totalItems }"
+                    class="product-card">
+                    <div [lazyLoad]="product.thumbnail" class="image">
+                        <span>- {{ product.discountPercentage }}%</span>
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ product.title }}</h4>
+                        <span class="desc">{{ product.description }}</span>
+                        <div class="price">
+                            <!-- PRICE BEFORE ADDING DISCOUNT -->
+                            <span class="price-before">
+                                {{ getOldPrice(product.price, product.discountPercentage) }}
+                                <span class="usd">USD</span>
+                            </span>
+                            <span class="price-after">
+                                {{ product.price }}
+                                <span class="usd">USD</span>
+                            </span>
+                        </div>
+                        <div class="product-info">
+                            <span>Brand: <span class="info">{{ product.brand }}</span></span>
+                            <span>Category: <span class="info">{{ product.category }}</span></span>
+                            <span>In stock: <span class="info">{{ product.stock }}</span></span>
+                        </div>
+                        <div class="stars">
+                            <img src="../../../assets/img/Star 15.png" alt="">
+                            <span class="rating">{{ product.rating }}</span>
+                            <span class="stock">(11)</span>
+                        </div>
+                        <button *ngIf="!itemsInCart[product?.id]" (click)="addToCart(product.id)">Add to cart</button>
+                        <button *ngIf="itemsInCart[product?.id]" (click)="removeFromCart(product.id)"
+                            class="remove">Remove from cart</button>
+                    </div>
+                </div>
+                <div class="no-products" *ngIf="products?.length === 0">
+                    <p>No products found</p>
+                    <button (click)="getProducts(0)">Show all</button>
+                </div>
+            </div>
+
+            <!-- START LOADIN CONTENT -->
+            <ng-template #loadingContent>
+                <div class="col-75 animated-content d-flex flex-wrap">
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image animated-background"></div>
+                        <div class="title animated-background"></div>
+                        <div class="desc animated-background"></div>
+                        <div class="price">
+                            <div class="animated-background"></div>
+                            <div class="animated-background"></div>
+                        </div>
+                        <div class="brand animated-background"></div>
+                        <div class="category animated-background"></div>
+                        <div class="stock animated-background"></div>
+                        <div class="rating animated-background"></div>
+                        <div class="button animated-background"></div>
+                    </div>
+                </div>
+            </ng-template>
+            <!-- END LOADIN CONTENT -->
+        </div>
+        <div *ngIf="totalItems > 9" class="pagination">
+            <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+        </div>
+        <!-- End Home content -->
+    </div>
+</section>

@@ -1,0 +1,42 @@
+<nav>
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <!-- START NAVBAR LEFT SECTION -->
+        <div class="col d-flex align-items-center">
+            <div class="logo align-middle">
+                <img src="../../../assets/img/Logomark.png" alt="">
+                <span>ClickTik</span>
+            </div>
+            <div class="navigations">
+                <a [routerLink]="['/home']" class="nav-link" href="">Home</a>
+            </div>
+        </div>
+        <!-- END NAVBAR LEFT SECTION -->
+
+        <!-- START NAVBAR RIGHT SECTION -->
+        <div class="col col-r d-flex align-items-center">
+
+            <!-- ITEMS TO SHOW BEFORE LOGIN -->
+            <a *ngIf="!(authService.loggedInUser$ | async)" [routerLink]="['/login']" class="nav-link" href="">Log in</a>
+            
+            <!-- ITEMS TO SHOW AFTER LOGIN -->
+            <ng-container *ngIf="authService.loggedInUser$ | async">
+                <div class="search">
+                    <img src="../../../assets/img/search.png" alt="searchProducts">
+                    <input (keydown.enter)="search()" [(ngModel)]="searchTxt" type="search" placeholder="Search">
+                </div>
+                <div class="cart">
+                    <img src="../../../assets/img/cart.png" alt="cart">
+                    <div class="products-num">
+                        {{ cartService.productsInCart$ | async }}
+                    </div>
+                </div>
+                <a (click)="logout()" [routerLink]="['/login']" class="nav-link" href="">Logout</a>
+            </ng-container>
+
+        </div>
+        <!-- END NAVBAR LEFT SECTION -->
+
+    </div>
+</nav>
+

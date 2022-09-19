@@ -1,0 +1,20 @@
+<section class="login d-flex justify-content-center">
+    <div class="container">
+        <div class="image">
+            <img src="../../../assets/img/Logomark.png" alt="">
+        </div>
+        <h3>Log in to your account</h3>
+        <p>Welcome back! Please enter your details.</p>
+        <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input formControlName="username" type="email" placeholder="Enter your email" #email>
+            </div>
+            <div class="form-group">
+                <label for="email">Password</label>
+                <input formControlName="password" type="password" placeholder="Password" #email>
+            </div>
+            <button [disabled]="!form.valid || disableBtn" type="submit">Sign in</button>
+        </form>
+    </div>
+</section>

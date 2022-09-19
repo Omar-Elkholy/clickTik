@@ -1,0 +1,73 @@
+.login {
+    text-align: center;
+    padding-bottom: 80px;
+    
+    img {
+        width: 48px;
+        height: 48px;
+    }
+
+    h3 {
+        font-size: 30px;
+        margin: 24px 0 12px;
+        font-weight: 600;
+        line-height: 30px;
+        color: #101828;
+    }
+
+    p {
+        margin-bottom: 32px;
+        font-weight: 400;
+        line-height: 24px;
+        color: $text-gray;
+    }
+
+    form .form-group {
+        margin-bottom: 20px;
+
+        label {
+            display: block;
+            text-align: start;
+            font-weight: 600;
+            font-size: 14px;
+            color: $text-black-2;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            outline: unset;
+            padding: 10px 14px;
+            border: 1px solid #D0D5DD;            
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+            border-radius: 8px;
+
+            &::placeholder {
+                color: $text-gray;
+                transition: all 1s;
+            }
+
+            &:focus {
+                box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+                &::placeholder {
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    button {
+        cursor: pointer;
+        width: 100%;
+        padding: 10px 0;
+        background-color: $btn-primary;
+        color: $text-black-2;
+        font-weight: 500;
+    }
+}
+
+@media(max-width: 575px) {
+    .login {
+        margin: 0 20px;
+    }
+}

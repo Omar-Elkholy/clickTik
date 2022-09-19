@@ -1,0 +1,95 @@
+nav {
+    border-bottom: .5px solid #424242;
+    .container {
+        padding: 18px 0;
+        
+        .logo {
+            img {
+                width: 32px;
+                height: 32px;
+            }
+
+            span {
+                display: inline-block;
+                margin-left: 9px;
+            }
+        }
+
+        .navigations {
+            margin-left: 80px;
+        }
+
+        .nav-link {
+            color: #667085;
+            font-weight: 500;            
+        }
+
+        div.search {
+            position: relative;
+            input {
+                padding: 7px 11px 7px 36px;
+                border: .5px solid $border-color;
+                outline: none;
+                margin-right: 26px;
+            }
+
+            img {
+                position: absolute;
+                left: 11px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 17px;
+                height: 17px;
+            }
+        }
+        
+        div.cart {
+            position: relative;
+            cursor: pointer;
+            margin: 3px 18px 0 0;
+            
+            .products-num {
+                position: absolute;
+                top: -9px;
+                right: -6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $btn-primary;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                border: 2px solid #fff;
+                font-size: 10px;
+                padding: 7px;
+            }
+        }
+
+    }
+}
+
+@media(max-width: 575px) {
+    .container {
+        flex-direction: column;
+
+        & > .col {
+            margin-bottom: 14px;
+        }
+    }
+}
+
+
+@media(max-width: 350px) {
+    nav .container .col-r {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav .container div.search input {
+        margin-right: unset;
+        margin-bottom: 16px;
+    }
+    nav .container div.search img {
+        top: calc(50% - 8px);
+    }
+}

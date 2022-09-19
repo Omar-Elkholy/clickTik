@@ -1,0 +1,10 @@
+<div class="filteration">
+    <h5>Products</h5>
+    <div class="checkbox-filters">
+        <div *ngFor="let category of categories">
+            <input [checked]="checkedCategory === category" (change)="categoryChange($event.target.value, $event.currentTarget.checked)" 
+                type="checkbox" [value]="category" [id]="category">
+            <label class="cursor-pointer" [for]="category">{{category}}</label>
+        </div>
+    </div>
+</div>
