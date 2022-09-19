@@ -7,3 +7,5 @@ Angular 14 simple e-commerce using dummy rest API.
 3- Products Search. <br />
 4- Auth & Home Guards. <br />
 5- Server Side Pagination. <br />
+
+Live Demo: https://clicktik.netlify.app
